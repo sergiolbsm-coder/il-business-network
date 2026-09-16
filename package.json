@@ -42,8 +42,5 @@
     "tsx": "^4.23.13",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@12.4.2",
-  "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "sharp", "@img/sharp-libvips-linux-x64"]
-  }
+  "packageManager": "pnpm@12.4.2"
 }
