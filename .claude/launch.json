@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "IL Business Network",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["/Users/sergiomoura/Library/pnpm/bin/next", "dev", "--port", "3001"],
+      "port": 3001
+    }
+  ]
+}
