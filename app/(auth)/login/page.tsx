@@ -35,7 +35,7 @@ export default function LoginPage() {
               textTransform: "uppercase",
             }}
           >
-            B2B · Rede de Negócios
+            Comunidade do Instituto da Liderança
           </div>
           <div
             style={{
