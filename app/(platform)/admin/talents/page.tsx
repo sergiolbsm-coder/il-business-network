@@ -1,6 +1,7 @@
 import { requireRole } from "@/lib/auth/session";
 import { getJobs, deleteJobAction, updateJobStatusAction } from "@/domains/jobs/actions";
-import { Briefcase, Eye, EyeOff, Trash2 } from "lucide-react";
+import { Briefcase, Eye, EyeOff, Plus, Trash2 } from "lucide-react";
+import Link from "next/link";
 
 const TYPE_LABELS: Record<string, string> = { clt: "CLT", pj: "PJ", estagio: "Estágio", freelance: "Freelance" };
 const STATUS_CLASS: Record<string, string> = { rascunho: "badge-muted", publicada: "badge-success", encerrada: "badge-error" };
@@ -24,11 +25,16 @@ export default async function AdminTalentsPage() {
 
   return (
     <div className="page-container">
-      <div style={{ marginBottom: "24px" }}>
-        <h1 style={{ fontSize: "22px", fontWeight: 700, marginBottom: "4px" }}>Talentos e vagas</h1>
-        <p style={{ fontSize: "14px", color: "var(--idl-text-muted)" }}>
-          Todas as vagas publicadas pelas empresas da rede — {rows.length} no total
-        </p>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "24px" }}>
+        <div>
+          <h1 style={{ fontSize: "22px", fontWeight: 700, marginBottom: "4px" }}>Talentos e vagas</h1>
+          <p style={{ fontSize: "14px", color: "var(--idl-text-muted)" }}>
+            Todas as vagas da rede — {rows.length} no total
+          </p>
+        </div>
+        <Link href="/jobs/new" className="btn-primary" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px" }}>
+          <Plus size={15} /> Nova vaga
+        </Link>
       </div>
 
       {rows.length === 0 ? (

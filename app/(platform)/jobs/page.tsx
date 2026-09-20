@@ -46,7 +46,7 @@ export default async function JobsPage() {
             {rows.length} vaga{rows.length !== 1 ? "s" : ""} cadastrada{rows.length !== 1 ? "s" : ""}
           </p>
         </div>
-        {session.role === "empresa" && (
+        {(session.role === "empresa" || session.role === "instituto") && (
           <Link href="/jobs/new" className="btn-primary" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "14px" }}>
             <Plus size={15} /> Nova vaga
           </Link>
@@ -60,7 +60,7 @@ export default async function JobsPage() {
           <p style={{ fontSize: "14px", color: "var(--idl-text-muted)", marginBottom: "20px" }}>
             Publique vagas para atrair talentos qualificados da rede.
           </p>
-          {session.role === "empresa" && (
+          {(session.role === "empresa" || session.role === "instituto") && (
             <Link href="/jobs/new" className="btn-primary" style={{ fontSize: "13px", padding: "9px 18px" }}>
               Cadastrar primeira vaga
             </Link>
@@ -108,7 +108,7 @@ export default async function JobsPage() {
                   )}
                   <form action={deleteJob}>
                     <input type="hidden" name="jobId" value={job.id} />
-                    <button type="submit" className="btn-outline" style={{ fontSize: "12px", padding: "6px 12px", display: "flex", alignItems: "center", gap: "4px", color: "var(--idl-error, #ef4444)", borderColor: "var(--idl-error, #ef4444)" }} onClick={(e) => { if (!confirm("Excluir esta vaga?")) e.preventDefault(); }}>
+                    <button type="submit" className="btn-outline" style={{ fontSize: "12px", padding: "6px 12px", display: "flex", alignItems: "center", gap: "4px", color: "var(--idl-error, #ef4444)", borderColor: "var(--idl-error, #ef4444)" }}>
                       <Trash2 size={13} /> Excluir
                     </button>
                   </form>

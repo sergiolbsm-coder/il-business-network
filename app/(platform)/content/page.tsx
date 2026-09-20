@@ -1,6 +1,7 @@
 import { requireSession } from "@/lib/auth/session";
 import { getContentItems, getAllContentItems, deleteContentAction } from "@/domains/content/actions";
-import { BookOpen, Plus, Trash2 } from "lucide-react";
+import { ConfirmDeleteButton } from "@/components/platform/ConfirmDeleteButton";
+import { BookOpen, Plus } from "lucide-react";
 import Link from "next/link";
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -58,16 +59,16 @@ export default async function ContentPage() {
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px" }}>
                 <span className="badge badge-info">{CATEGORY_LABELS[item.category] ?? item.category}</span>
                 {isAdmin && (
-                  <div style={{ display: "flex", gap: "6px" }}>
+                  <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
                     <Link href={`/content/${item.id}/edit`} style={{ fontSize: "12px", color: "var(--idl-text-muted)", textDecoration: "none", border: "1px solid var(--idl-border)", borderRadius: "6px", padding: "4px 8px" }}>
                       Editar
                     </Link>
-                    <form action={deleteContent} style={{ display: "inline" }}>
-                      <input type="hidden" name="contentId" value={item.id} />
-                      <button type="submit" style={{ background: "none", border: "1px solid #ef4444", borderRadius: "6px", padding: "4px 8px", cursor: "pointer", color: "#ef4444", fontSize: "12px", display: "flex", alignItems: "center", gap: "4px" }} onClick={(e) => { if (!confirm("Excluir este conteúdo?")) e.preventDefault(); }}>
-                        <Trash2 size={12} /> Excluir
-                      </button>
-                    </form>
+                    <ConfirmDeleteButton
+                      fieldName="contentId"
+                      fieldValue={item.id}
+                      action={deleteContent}
+                      confirmMessage="Excluir este conteúdo?"
+                    />
                   </div>
                 )}
               </div>
