@@ -57,7 +57,7 @@ export default function LoginPage() {
               color: "var(--idl-purple-dark)",
             }}
           >
-            Entrar na plataforma
+            Entrar na Comunidade
           </h1>
           <p style={{ fontSize: "14px", color: "var(--idl-text-muted)", marginBottom: "24px" }}>
             Acesse sua conta do IL Business Network
