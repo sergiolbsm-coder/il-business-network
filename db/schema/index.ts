@@ -157,6 +157,71 @@ export const auditEvents = pgTable("audit_events", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// ─── Vagas ───────────────────────────────────────────────────────────────────
+
+export const jobs = pgTable("jobs", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  organizationId: uuid("organization_id").notNull().references(() => organizations.id, { onDelete: "cascade" }),
+  createdById: uuid("created_by_id").notNull().references(() => users.id),
+  title: text("title").notNull(),
+  department: text("department").notNull(),
+  location: text("location").notNull(),
+  type: text("type").notNull().default("clt"),
+  description: text("description").notNull(),
+  requirements: text("requirements"),
+  salaryRange: text("salary_range"),
+  status: text("status").notNull().default("rascunho"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// ─── Eventos ─────────────────────────────────────────────────────────────────
+
+export const events = pgTable("events", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  organizationId: uuid("organization_id").notNull().references(() => organizations.id, { onDelete: "cascade" }),
+  createdById: uuid("created_by_id").notNull().references(() => users.id),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  eventDate: timestamp("event_date").notNull(),
+  location: text("location"),
+  format: text("format").notNull().default("online"),
+  status: text("status").notNull().default("publicado"),
+  capacity: integer("capacity"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// ─── Conteúdos ───────────────────────────────────────────────────────────────
+
+export const contentItems = pgTable("content_items", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  organizationId: uuid("organization_id").notNull().references(() => organizations.id, { onDelete: "cascade" }),
+  createdById: uuid("created_by_id").notNull().references(() => users.id),
+  title: text("title").notNull(),
+  summary: text("summary").notNull(),
+  body: text("body").notNull(),
+  category: text("category").notNull(),
+  status: text("status").notNull().default("rascunho"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// ─── Soluções de parceiros ───────────────────────────────────────────────────
+
+export const solutions = pgTable("solutions", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  organizationId: uuid("organization_id").notNull().references(() => organizations.id, { onDelete: "cascade" }),
+  createdById: uuid("created_by_id").notNull().references(() => users.id),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  category: text("category").notNull(),
+  region: text("region").notNull().default("nacional"),
+  status: text("status").notNull().default("ativa"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 // ─── Tipos exportados ────────────────────────────────────────────────────────
 
 export type Organization = typeof organizations.$inferSelect;
@@ -169,3 +234,7 @@ export type Demand = typeof demands.$inferSelect;
 export type NewDemand = typeof demands.$inferInsert;
 export type Connection = typeof connections.$inferSelect;
 export type AuditEvent = typeof auditEvents.$inferSelect;
+export type Job = typeof jobs.$inferSelect;
+export type Event = typeof events.$inferSelect;
+export type ContentItem = typeof contentItems.$inferSelect;
+export type Solution = typeof solutions.$inferSelect;

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   MessageSquare,
   LayoutDashboard,
@@ -90,16 +91,15 @@ export function Sidebar({ role, currentPath, organizationName }: SidebarProps) {
       {/* Logo */}
       <div className="sidebar-logo">
         <div style={{ textAlign: "center" }}>
-          <div style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "20px",
-            fontWeight: 700,
-            color: "#FBF9FF",
-            letterSpacing: "0.02em",
-          }}>
-            Instituto
-          </div>
-          <div className="sidebar-logo-sub">DA LIDERANÇA · B2B</div>
+          <Image
+            src="/logo.png"
+            alt="Instituto da Liderança"
+            width={140}
+            height={56}
+            style={{ objectFit: "contain", filter: "brightness(0) invert(1)" }}
+            priority
+          />
+          <div className="sidebar-logo-sub" style={{ marginTop: "4px" }}>B2B</div>
         </div>
       </div>
 

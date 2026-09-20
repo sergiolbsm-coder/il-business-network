@@ -60,3 +60,13 @@ export async function requireSession(): Promise<SessionData> {
   if (!session) throw new Error("Não autenticado");
   return session;
 }
+
+export async function requireRole(
+  roles: Array<"instituto" | "empresa" | "profissional" | "parceiro">
+): Promise<SessionData> {
+  const session = await requireSession();
+  if (!roles.includes(session.role)) {
+    throw new Error(`Acesso negado. Perfil requerido: ${roles.join(" ou ")}`);
+  }
+  return session;
+}
