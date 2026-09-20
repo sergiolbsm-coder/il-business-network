@@ -1,5 +1,6 @@
 import { loginAction } from "@/lib/auth/actions";
 import { FormAction } from "@/components/ui/FormAction";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -15,19 +16,16 @@ export default function LoginPage() {
       }}
     >
       <div style={{ width: "100%", maxWidth: "420px" }}>
-        {/* Logo / título */}
+        {/* Logo */}
         <div style={{ textAlign: "center", marginBottom: "40px" }}>
-          <div
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "32px",
-              fontWeight: 700,
-              color: "var(--idl-purple-dark)",
-              marginBottom: "4px",
-            }}
-          >
-            Instituto
-          </div>
+          <Image
+            src="/logo.png"
+            alt="Instituto da Liderança"
+            width={180}
+            height={72}
+            style={{ objectFit: "contain", margin: "0 auto 12px" }}
+            priority
+          />
           <div
             style={{
               fontFamily: "'JetBrains Mono', monospace",
@@ -37,7 +35,7 @@ export default function LoginPage() {
               textTransform: "uppercase",
             }}
           >
-            DA LIDERANÇA · B2B
+            B2B · Rede de Negócios
           </div>
           <div
             style={{
@@ -45,7 +43,7 @@ export default function LoginPage() {
               height: "3px",
               background: "var(--idl-gradient)",
               borderRadius: "2px",
-              margin: "12px auto 0",
+              margin: "10px auto 0",
             }}
           />
         </div>
